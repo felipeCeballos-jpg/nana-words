@@ -380,108 +380,93 @@ audio {
   }
 }
 
-@keyframes reappear {
-  0% {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-
-  35% {
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes disappear {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  45% {
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-}
-
-/* Animation sequence for petals */
-.animation-active #petal1 {
-  animation: disappear 0.2s 0s forwards, reappear 0.5s 3.2s forwards;
-}
-
-.animation-active #petal2 {
-  animation: disappear 0.2s 0.2s forwards, reappear 0.5s 3.4s forwards;
-}
-
-.animation-active #petal3 {
-  animation: disappear 0.2s 0.4s forwards, reappear 0.5s 3.6s forwards;
-}
-
-.animation-active .petal4 {
-  animation: disappear 0.2s 0.6s forwards, reappear 0.5s 3.8s forwards;
-}
-
-.animation-active #petal5 {
-  animation: disappear 0.2s 0.8s forwards, reappear 0.5s 4s forwards;
-}
-
-.animation-active #petal6 {
-  animation: disappear 0.2s 1s forwards, reappear 0.5s 4.2s forwards;
-}
-
-.animation-active #petal7 {
-  animation: disappear 0.2s 1.2s forwards, reappear 0.5s 4.4s forwards;
-}
-
-.animation-active #petal8 {
-  animation: disappear 0.2s 1.4s forwards, reappear 0.5s 4.6s forwards;
-}
-
-.animation-active #petal9 {
-  animation: disappear 0.2s 1.6s forwards, reappear 0.2s 4.8s forwards;
-}
-
-.animation-active #petal10 {
-  animation: disappear 0.2s 1.8s forwards, reappear 0.5s 5s forwards;
-}
-
-.animation-active #petal11 {
-  animation: disappear 0.2s 2s forwards, reappear 0.5s 5.2s forwards;
-}
-
-.animation-active #petal12 {
-  animation: disappear 0.2s 2.2s forwards, reappear 0.5s 5.4s forwards;
-}
-
-.animation-active #petal13 {
-  animation: disappear 0.2s 2.4s forwards, reappear 0.5s 5.6s forwards;
-}
-
-.animation-active #petal14 {
-  animation: disappear 0.2s 2.6s forwards, reappear 0.5s 5.8s forwards;
-}
-
-.animation-active #petal15 {
-  animation: disappear 0.2s 2.8s forwards, reappear 0.5s 6s forwards;
-}
-
-.animation-active #petal16 {
-  animation: disappear 0.2s 3s forwards, reappear 0.5s 6.2s forwards;
-}
-
 /* Center piece animations */
 .animation-active #play-path {
   opacity: 0;
   animation: fadeIn 2s ease-in-out infinite;
 }
+
+/* PLAY ANIMATION (START) */
+.animation-active #petal1 {
+  animation: fullCycle 4s 0s infinite;
+}
+.animation-active #petal2 {
+  animation: fullCycle 4s 0.1s infinite;
+}
+.animation-active #petal3 {
+  animation: fullCycle 4s 0.2s infinite;
+}
+.animation-active .petal4 {
+  animation: fullCycle 4s 0.3s infinite;
+}
+.animation-active #petal5 {
+  animation: fullCycle 4s 0.4s infinite;
+}
+.animation-active #petal6 {
+  animation: fullCycle 4s 0.5s infinite;
+}
+.animation-active #petal7 {
+  animation: fullCycle 4s 0.6s infinite;
+}
+.animation-active #petal8 {
+  animation: fullCycle 4s 0.7s infinite;
+}
+.animation-active #petal9 {
+  animation: fullCycle 4s 0.8s infinite;
+}
+.animation-active #petal10 {
+  animation: fullCycle 4s 0.9s infinite;
+}
+.animation-active #petal11 {
+  animation: fullCycle 4s 1s infinite;
+}
+.animation-active #petal12 {
+  animation: fullCycle 4s 1.1s infinite;
+}
+.animation-active #petal13 {
+  animation: fullCycle 4s 1.2s infinite;
+}
+.animation-active #petal14 {
+  animation: fullCycle 4s 1.3s infinite;
+}
+.animation-active #petal15 {
+  animation: fullCycle 4s 1.4s infinite;
+}
+.animation-active #petal16 {
+  animation: fullCycle 4s 1.5s infinite;
+}
+
+@keyframes fullCycle {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  2% {
+    opacity: 0;
+  }
+
+  5% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  53% {
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* PLAY ANIMATION  (STOP) */
 
 @keyframes activeMenu {
   from {
