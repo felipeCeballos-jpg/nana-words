@@ -1,0 +1,90 @@
+@media only screen and (min-width: 801px) and (max-width: 1366px) {
+  .language-selector {
+    margin-right: 6rem;
+  }
+
+  .nanas-words-section {
+    max-width: 78.398rem;
+  }
+  .vinyl-section {
+    width: 78.398rem;
+    height: 74.353rem;
+  }
+
+  .vinyl-disc-section {
+    width: 70.233rem;
+    height: 70.233rem;
+    /* bottom: -140px; */
+    /*  bottom: -298px; */
+    bottom: -293px;
+    transform: rotate(0deg);
+  }
+
+  .play {
+    width: 10.822rem;
+    height: 10.816rem;
+  }
+
+  .stop {
+    width: 10.66rem;
+    height: 10.658rem;
+  }
+
+  .pause {
+    width: 10.824rem;
+    height: 10.826rem;
+  }
+
+  .menu {
+    margin-top: 5.8rem;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  /* .vinyl-disc-section {
+    bottom: -170px;
+  } */
+}
+
+@media only screen and (max-width: 1120px) {
+  .nanas-words-section {
+    max-width: 64.279rem;
+  }
+
+  .vinyl-section {
+    width: 64.279rem;
+    height: 60.963rem;
+  }
+
+  .playing-widget {
+    width: 843px;
+  }
+
+  .playing-img {
+    width: 21.299rem;
+    height: 27.888rem;
+  }
+
+  .playing-tools {
+    max-width: 26.031rem;
+  }
+
+  .play {
+    width: 8.873rem;
+    height: 8.869rem;
+  }
+
+  .stop {
+    width: 8.74rem;
+    height: 8.738rem;
+  }
+
+  .pause {
+    width: 8.874rem;
+    height: 8.876rem;
+  }
+
+  #div-eq-container {
+    height: 156px;
+  }
+}

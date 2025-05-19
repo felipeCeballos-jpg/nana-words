@@ -1,0 +1,541 @@
+@font-face {
+  font-family: 'MADE Likes Slab';
+  src: url('assets/font/MADE-Likes-Slab.otf');
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background-color: #f7e2cc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+body .loader img {
+  height: 16rem;
+  width: 16rem;
+}
+
+body {
+  background-color: #f7e2cc;
+  color: #000000;
+  font-family: 'MADE Likes Slab';
+}
+
+main {
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('./assets/bg.webp');
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0px 50px;
+  overflow: hidden;
+}
+
+.nanas-words-section img {
+  pointer-events: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nanas-words-section {
+  position: relative;
+  width: 78.455rem;
+}
+
+.hero-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.language-container {
+  display: flex;
+  justify-content: flex-end;
+  height: 4.188rem;
+  margin-top: 2rem;
+}
+
+.language-selector {
+  position: relative;
+  width: 6.813rem;
+  align-self: flex-end;
+  /* margin-right: 1rem; */
+  margin-right: 7rem;
+  margin-bottom: 1.25rem;
+  cursor: pointer;
+  transition: none;
+  pointer-events: auto !important;
+  z-index: 2;
+}
+
+.vinyl-section {
+  position: relative;
+  width: 78.455rem;
+  height: 74.419rem;
+  z-index: 1;
+}
+
+.vinyl-img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-image: url('./assets/vinyl_ru.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.vinyl-img:lang(en) {
+  background-image: url('./assets/vinyl_eng.webp');
+}
+
+.playing-widget {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 988px;
+}
+
+.playing-img {
+  position: relative;
+  top: -18px;
+  left: 50px;
+  width: 415.64px;
+  height: 544.22px;
+  transform: rotate(-1deg);
+}
+
+/* PLAYER CSS */
+.playing-tools {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: 20px;
+  margin-bottom: 1.6rem;
+  max-width: 600px;
+  width: 31.749rem;
+  transform: rotate(-2deg);
+  right: -85px;
+}
+
+.playing-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.25rem;
+}
+
+.playing-button {
+  background-color: transparent;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.play {
+  width: 10.83rem;
+  height: 10.824rem;
+}
+
+.stop {
+  width: 10.668rem;
+  height: 10.665rem;
+}
+
+.pause {
+  width: 10.824rem;
+  height: 10.827rem;
+}
+
+/* .play-icon,
+.stop-icon,
+.pause-icon {
+  fill: #1d1d1d;
+  transform-origin: center;
+} */
+path {
+  fill: #1d1d1d;
+  transform-origin: center;
+}
+
+button:disabled > svg > .play-icon > path,
+button:disabled > svg > .stop-icon > path,
+button:disabled > svg > .pause-icon > path {
+  /* fill: #6d6152; */
+  fill: #463b3a;
+}
+
+audio {
+  display: none;
+  opacity: 0.75;
+}
+
+#div-player-container {
+  overflow: hidden;
+}
+
+#div-eq-container {
+  /*  height: 255px; */
+  height: 213px;
+  position: relative;
+  margin: 10px;
+  -webkit-box-reflect: below 53px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.3)));
+}
+
+.vis-circle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+#visualisation > div {
+  display: inline-block;
+  position: absolute;
+  bottom: 0px;
+
+  /* min-height: 53.1px !important; */
+}
+
+#round-visualisation {
+  position: absolute;
+  width: 4%;
+  height: 4%;
+  top: 48%;
+  left: 48%;
+  background: #bf1aee;
+  border-radius: 50%;
+}
+
+.center-div {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.button-container {
+  width: 250px;
+}
+
+/* .play-button {
+  padding: 5px 20px;
+  border-radius: 4px;
+  border: 1px solid black;
+  margin-top: 20px;
+  cursor: pointer;
+} */
+
+/* END PLAYER */
+
+.vinyl-disc-section {
+  position: absolute;
+  width: 70.284rem;
+  height: 70.284rem;
+  /* bottom: -75px; */
+  bottom: -236px;
+  z-index: 0;
+  transform: rotate(-1.7deg);
+}
+
+.vinyl-disc-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url('./assets/vinyl_disc_2.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+/* FOOTER */
+.section-navbook {
+  position: relative;
+}
+
+.menu {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10.8rem;
+  transform: translateY(19rem);
+  z-index: 2;
+}
+
+.pages {
+  position: absolute;
+  display: flex;
+  bottom: 15px;
+}
+
+.navbook {
+  max-width: 80vw;
+  width: 100%;
+  margin-bottom: 0px;
+  margin-left: -2vmin;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.main {
+  margin: -3vmin 0 0 5vmin;
+  height: 100%;
+}
+
+.milestones {
+  margin: 1vmin 0 0 -3vmin;
+  height: 100%;
+  z-index: 1;
+}
+
+.stories {
+  margin: -4vmin 0 0 -6vmin;
+  height: 100%;
+}
+
+.gallery {
+  margin: 1vmin 0 0 -3vmin;
+  height: 100%;
+  z-index: 1;
+}
+
+.my-granny {
+  margin: -4vmin 0 0 -6vmin;
+  height: 100%;
+}
+
+.remember {
+  margin: 1.5vmin 0 0 -4vmin;
+  height: 100%;
+  z-index: 1;
+}
+
+.nanas-words {
+  margin: -3vmin 0 0 -3vmin;
+  height: 100%;
+}
+
+.pages img {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  width: 12vw;
+  transition: transform 0.3s ease-in-out;
+  transform: translateY(0rem);
+}
+
+.pages img:hover {
+  cursor: pointer;
+  transform: translateY(-1rem);
+}
+
+.menu-active {
+  animation: 1.6s ease-out 0.8ms forwards activeMenu;
+}
+
+/* PLAYING BUTTONS ANIMATION */
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes reappear {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  35% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes disappear {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  45% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Animation sequence for petals */
+.animation-active #petal1 {
+  animation: disappear 0.2s 0s forwards, reappear 0.5s 3.2s forwards;
+}
+
+.animation-active #petal2 {
+  animation: disappear 0.2s 0.2s forwards, reappear 0.5s 3.4s forwards;
+}
+
+.animation-active #petal3 {
+  animation: disappear 0.2s 0.4s forwards, reappear 0.5s 3.6s forwards;
+}
+
+.animation-active .petal4 {
+  animation: disappear 0.2s 0.6s forwards, reappear 0.5s 3.8s forwards;
+}
+
+.animation-active #petal5 {
+  animation: disappear 0.2s 0.8s forwards, reappear 0.5s 4s forwards;
+}
+
+.animation-active #petal6 {
+  animation: disappear 0.2s 1s forwards, reappear 0.5s 4.2s forwards;
+}
+
+.animation-active #petal7 {
+  animation: disappear 0.2s 1.2s forwards, reappear 0.5s 4.4s forwards;
+}
+
+.animation-active #petal8 {
+  animation: disappear 0.2s 1.4s forwards, reappear 0.5s 4.6s forwards;
+}
+
+.animation-active #petal9 {
+  animation: disappear 0.2s 1.6s forwards, reappear 0.2s 4.8s forwards;
+}
+
+.animation-active #petal10 {
+  animation: disappear 0.2s 1.8s forwards, reappear 0.5s 5s forwards;
+}
+
+.animation-active #petal11 {
+  animation: disappear 0.2s 2s forwards, reappear 0.5s 5.2s forwards;
+}
+
+.animation-active #petal12 {
+  animation: disappear 0.2s 2.2s forwards, reappear 0.5s 5.4s forwards;
+}
+
+.animation-active #petal13 {
+  animation: disappear 0.2s 2.4s forwards, reappear 0.5s 5.6s forwards;
+}
+
+.animation-active #petal14 {
+  animation: disappear 0.2s 2.6s forwards, reappear 0.5s 5.8s forwards;
+}
+
+.animation-active #petal15 {
+  animation: disappear 0.2s 2.8s forwards, reappear 0.5s 6s forwards;
+}
+
+.animation-active #petal16 {
+  animation: disappear 0.2s 3s forwards, reappear 0.5s 6.2s forwards;
+}
+
+/* Center piece animations */
+.animation-active #play-path {
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out infinite;
+}
+
+@keyframes activeMenu {
+  from {
+    transform: translateY(19rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media only screen and (min-width: 1367px) {
+  .navbook {
+    max-width: 1196px;
+  }
+
+  .pages .main {
+    width: 196px;
+    margin-left: 0rem;
+    margin-top: 1.375rem;
+  }
+
+  .pages .milestones {
+    width: 194px;
+    margin-left: -55px;
+    margin-top: 5.25rem;
+  }
+
+  .pages .stories {
+    width: 187px;
+    margin-left: -90px;
+    margin-top: 0.4rem;
+  }
+
+  .pages .gallery {
+    width: 215px;
+    margin-top: 5.25rem;
+    margin-left: -60px;
+  }
+
+  .pages .my-granny {
+    width: 223px;
+    margin-left: -120px;
+    margin-top: 0.4rem;
+  }
+
+  .pages .remember {
+    width: 207px;
+    margin-top: 5.813rem;
+    margin-left: -70px;
+  }
+
+  .pages .nanas-words {
+    width: 183px;
+    margin-top: 2.313rem;
+    margin-left: -50px;
+  }
+}
