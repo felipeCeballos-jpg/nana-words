@@ -33,7 +33,7 @@
     /* height: 200vmax; */
     /*  height: 220vmin; */
     height: 203vmin;
-    border: 1px solid orange;
+    /*  border: 1px solid orange; */
     top: -7.7vmax;
   }
 
@@ -104,9 +104,9 @@
   }
 
   /* FOOTER */
-  .section-navbook {
+  /* .section-navbook {
     border: 1px solid blue;
-  }
+  } */
   .menu {
     width: 100%;
     /*  margin-top: 31vmin; */
