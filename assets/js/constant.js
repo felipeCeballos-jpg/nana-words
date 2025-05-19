@@ -7,7 +7,7 @@ export const footerRuTranslateImgs = [
   './assets/navbook/gallery_ru.webp',
   './assets/navbook/my_granny_ru.webp',
   './assets/navbook/remember_ru.webp',
-  './assets/navbook/nanas_words_ru.webp',
+  './assets/navbook/map_ru.webp',
 ];
 
 export const footerEnTranslateImgs = [
@@ -17,7 +17,7 @@ export const footerEnTranslateImgs = [
   './assets/navbook/gallery_en.webp',
   './assets/navbook/my_granny_en.webp',
   './assets/navbook/remember_en.webp',
-  './assets/navbook/nanas_words_en.webp',
+  './assets/navbook/map_en.webp',
 ];
 
 export const originalRuImages = ['./assets/klubok_en.png'];

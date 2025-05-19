@@ -344,7 +344,7 @@ audio {
   z-index: 1;
 }
 
-.nanas-words {
+.map {
   margin: -3vmin 0 0 -3vmin;
   height: 100%;
 }
@@ -533,7 +533,7 @@ audio {
     margin-left: -70px;
   }
 
-  .pages .nanas-words {
+  .pages .map {
     width: 183px;
     margin-top: 2.313rem;
     margin-left: -50px;

@@ -5,9 +5,15 @@ let currentSettings = null;
 
 // Our responsive settings for different screen sizes
 const responsiveSettings = {
+  smallMobile: {
+    barCount: 15,
+    heightMultiplier: 80,
+    barWidth: '4vmin',
+    deviceType: 'smallMobile',
+  },
   mobile: {
     barCount: 15,
-    heightMultiplier: 110,
+    heightMultiplier: 150,
     barWidth: '4vmin',
     deviceType: 'mobile',
   },
@@ -97,7 +103,10 @@ function setupAudioContext() {
 
 // Set up our media queries using matchMedia
 function setupResponsiveQueries() {
-  const mobileQuery = window.matchMedia('(max-width: 800px)');
+  const smallMobile = window.matchMedia('(max-width: 514px)');
+  const mobileQuery = window.matchMedia(
+    '(min-width: 515px) and (max-width: 800px)'
+  );
   const tabletQuery = window.matchMedia(
     '(min-width: 801px) and (max-width: 1120px)'
   );
@@ -109,6 +118,8 @@ function setupResponsiveQueries() {
 
     if (mobileQuery.matches) {
       newSettings = responsiveSettings.mobile;
+    } else if (smallMobile.matches) {
+      newSettings = responsiveSettings.smallMobile;
     } else if (tabletQuery.matches) {
       newSettings = responsiveSettings.tablet;
     } else if (desktopQuery.matches) {
@@ -138,6 +149,7 @@ function setupResponsiveQueries() {
 
   // Listen for changes to each media query
   // This is the key advantage of matchMedia - precise boundary detection
+  smallMobile.addEventListener('change', updateSettings);
   mobileQuery.addEventListener('change', updateSettings);
   tabletQuery.addEventListener('change', updateSettings);
   desktopQuery.addEventListener('change', updateSettings);
