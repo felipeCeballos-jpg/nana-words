@@ -63,8 +63,6 @@ mqlMobile.addEventListener('change', (event) => {
   if (!event.matches) return;
   loader.style.display = 'flex';
 
-  console.log('HIIIMS');
-
   updateDesign(event.matches).then((result) => {
     checkLoaded(result.timestamp, loader);
   });

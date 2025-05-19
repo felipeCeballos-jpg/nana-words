@@ -170,8 +170,6 @@ function createVisualizerBars() {
     // Calculate position - evenly distribute across container
     const position = spacing + i * (parseFloat(settings.barWidth) + spacing);
 
-    console.log('PardeFloat: ', parseFloat(settings.barWidth));
-
     // Apply styles for this bar
     bar.style.width = settings.barWidth;
     bar.style.left = position + '%';
