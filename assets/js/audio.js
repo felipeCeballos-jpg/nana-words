@@ -31,7 +31,7 @@ const responsiveSettings = {
   },
   tablet: {
     barCount: 16,
-    heightMultiplier: 120,
+    heightMultiplier: 110,
     barWidth: '6%',
     deviceType: 'tablet',
   },
@@ -202,7 +202,6 @@ function createVisualizerBars() {
   const spacing =
     (100 - settings.barCount * parseFloat(settings.barWidth)) /
     (settings.barCount + 1);
-  console.log('Settings: ', settings);
   // Create each bar with proper positioning
   for (let i = 0; i < settings.barCount; i++) {
     const bar = document.createElement('div');

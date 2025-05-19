@@ -48,40 +48,54 @@
 
 @media only screen and (max-width: 1120px) {
   .nanas-words-section {
-    max-width: 64.279rem;
+    max-width: 60.279rem;
   }
 
   .vinyl-section {
-    width: 64.279rem;
-    height: 60.963rem;
+    /*  width: 64.279rem;
+    height: 60.963rem; */
+    width: 60.279rem;
+    height: 57.169rem;
   }
 
   .playing-widget {
-    width: 843px;
+    /* width: 843px; */
+    width: 794px;
   }
 
   .playing-img {
-    width: 21.299rem;
-    height: 27.888rem;
+    /* width: 21.299rem;
+    height: 27.888rem; */
+    /*  width: 19.299rem;
+    height: 25.269rem; */
+    width: 20rem;
+    height: 26.187rem;
   }
 
   .playing-tools {
-    max-width: 26.031rem;
+    /* max-width: 26.031rem; */
+    max-width: 24.8rem;
   }
 
   .play {
-    width: 8.873rem;
-    height: 8.869rem;
+    /*  width: 8.873rem;
+    height: 8.869rem; */
+    width: 7.873rem;
+    height: 7.869rem;
   }
 
   .stop {
-    width: 8.74rem;
-    height: 8.738rem;
+    /* width: 8.74rem;
+    height: 8.738rem; */
+    width: 7.74rem;
+    height: 7.738rem;
   }
 
   .pause {
-    width: 8.874rem;
-    height: 8.876rem;
+    /* width: 8.874rem;
+    height: 8.876rem; */
+    width: 7.874rem;
+    height: 7.876rem;
   }
 
   #div-eq-container {
