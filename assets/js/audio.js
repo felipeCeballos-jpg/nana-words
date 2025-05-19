@@ -11,6 +11,18 @@ const responsiveSettings = {
     barWidth: '4vmin',
     deviceType: 'smallMobile',
   },
+  smallMobileLandScape: {
+    barCount: 15,
+    heightMultiplier: 80,
+    barWidth: '5vmax',
+    deviceType: 'smallMobileLandScape',
+  },
+  mobileLandScape: {
+    barCount: 15,
+    heightMultiplier: 150,
+    barWidth: '4.5vmax',
+    deviceType: 'mobileLandScape',
+  },
   mobile: {
     barCount: 15,
     heightMultiplier: 150,
@@ -104,8 +116,14 @@ function setupAudioContext() {
 // Set up our media queries using matchMedia
 function setupResponsiveQueries() {
   const smallMobile = window.matchMedia('(max-width: 514px)');
+  const smallMobileLandScape = window.matchMedia(
+    '(orientation: landscape) and (max-width: 514px)'
+  );
   const mobileQuery = window.matchMedia(
     '(min-width: 515px) and (max-width: 800px)'
+  );
+  const mobileLandScape = window.matchMedia(
+    '(orientation: landscape) and (min-width: 515px) and (max-width: 800px)'
   );
   const tabletQuery = window.matchMedia(
     '(min-width: 801px) and (max-width: 1120px)'
@@ -117,9 +135,17 @@ function setupResponsiveQueries() {
     let newSettings;
 
     if (mobileQuery.matches) {
-      newSettings = responsiveSettings.mobile;
+      if (mobileLandScape.matches) {
+        newSettings = responsiveSettings.mobileLandScape;
+      } else {
+        newSettings = responsiveSettings.mobile;
+      }
     } else if (smallMobile.matches) {
-      newSettings = responsiveSettings.smallMobile;
+      if (smallMobileLandScape.matches) {
+        newSettings = responsiveSettings.smallMobileLandScape;
+      } else {
+        newSettings = responsiveSettings.smallMobile;
+      }
     } else if (tabletQuery.matches) {
       newSettings = responsiveSettings.tablet;
     } else if (desktopQuery.matches) {
@@ -150,7 +176,9 @@ function setupResponsiveQueries() {
   // Listen for changes to each media query
   // This is the key advantage of matchMedia - precise boundary detection
   smallMobile.addEventListener('change', updateSettings);
+  smallMobileLandScape.addEventListener('change', updateSettings);
   mobileQuery.addEventListener('change', updateSettings);
+  mobileLandScape.addEventListener('change', updateSettings);
   tabletQuery.addEventListener('change', updateSettings);
   desktopQuery.addEventListener('change', updateSettings);
 }
@@ -174,7 +202,7 @@ function createVisualizerBars() {
   const spacing =
     (100 - settings.barCount * parseFloat(settings.barWidth)) /
     (settings.barCount + 1);
-
+  console.log('Settings: ', settings);
   // Create each bar with proper positioning
   for (let i = 0; i < settings.barCount; i++) {
     const bar = document.createElement('div');

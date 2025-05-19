@@ -154,3 +154,92 @@
     margin: 0px;
   }
 }
+
+@media only screen and (max-width: 368px) {
+  #div-eq-container {
+    height: 95px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (max-width: 800px) {
+  .language-container {
+    margin-top: 2vmax;
+  }
+
+  .vinyl-section {
+    height: 203vmax;
+    top: calc((2vmax + 31.88px + 1.25rem) * -1);
+  }
+
+  .playing-img {
+    width: 61vmax;
+  }
+
+  .playing-container {
+    gap: 2vmax;
+  }
+
+  .play,
+  .pause,
+  .stop {
+    width: 20vmax;
+  }
+
+  #div-eq-container {
+    height: 31vmax;
+  }
+
+  .vinyl-disc-section {
+    top: 159vmax;
+  }
+
+  .menu {
+    margin-top: 14vmax;
+  }
+
+  .pages {
+    margin-left: -5vmax;
+  }
+
+  .navbook {
+    max-width: 110vmax;
+    width: 110vmax;
+    margin-left: -9vmax;
+  }
+
+  .pages img {
+    width: 18vmax;
+  }
+
+  .pages img:hover {
+    width: 18vmax;
+  }
+
+  .main {
+    margin: -3vmax 0 0 5vmax;
+  }
+
+  .milestones {
+    margin: 1vmax 0 0 -3vmax;
+  }
+
+  .stories {
+    margin: -4vmax 0 0 -6vmax;
+  }
+
+  .gallery {
+    margin: 1vmax 0 0 -3vmax;
+  }
+
+  .my-granny {
+    margin: -4vmax 0 0 -6vmax;
+  }
+
+  .remember {
+    margin: 1.5vmax 0 0 -4vmax;
+  }
+
+  .map {
+    margin: -3vmax 0 0 -3vmax;
+  }
+}
