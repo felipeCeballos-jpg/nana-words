@@ -7,6 +7,12 @@ let currentSettings = null;
 const responsiveSettings = {
   xsmallMobile: {
     barCount: 15,
+    heightMultiplier: 70,
+    barWidth: '4vmin',
+    deviceType: 'xsmallMobile',
+  },
+  xsmallMobileLandScape: {
+    barCount: 15,
     heightMultiplier: 60,
     barWidth: '1.5vmax',
     deviceType: 'xsmallMobile',
