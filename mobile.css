@@ -24,17 +24,8 @@
 
   .vinyl-section {
     position: relative;
-    /*  top: -17vmin; */
-    /* width: 100vmin; */
-    /* width: 100%;
-    height: 100vmax; */
     width: 100vw;
-    /* height: 100vh; */
-    /* height: 200vmax; */
-    /*  height: 220vmin; */
     height: 203vmin;
-    /*  border: 1px solid orange; */
-    /* top: -7.7vmax; */
     top: calc((2vmin + 31.88px + 1.25rem) * -1);
   }
 
@@ -50,10 +41,6 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    /*  margin-top: 27vmin; */
-    /* margin-top: 25vmax; */
-    /* margin-top: 6vmax; */
-    /*  margin-top: 2vmax; */
     margin-top: 3.5vmax;
   }
 
@@ -67,13 +54,10 @@
   }
 
   .playing-tools {
-    /* max-width: 100vmin; */
-    /* width: 100%; */
-    /* max-width: 72vmin; */
     width: 72%;
     transform: rotate(0deg);
     right: 0rem;
-    /*  margin-bottom: 36vmax; */
+    gap: 2vmax;
   }
 
   .playing-container {
@@ -89,10 +73,8 @@
   }
 
   #div-eq-container {
-    /*  height: 180px; */
-    /*  height: 13vmax; */
-    /*  height: 130px; */
     height: 31vmin;
+    margin: 0px;
   }
 
   .vinyl-disc-section {
@@ -107,9 +89,7 @@
   }
 
   /* FOOTER */
-  /* .section-navbook {
-    border: 1px solid blue;
-  } */
+
   .menu {
     width: 100%;
     /*  margin-top: 31vmin; */
@@ -158,6 +138,24 @@
 @media only screen and (max-width: 368px) {
   #div-eq-container {
     height: 95px;
+  }
+}
+
+@media only screen and (max-width: 408px) {
+  #div-eq-container {
+    height: 9vmax;
+  }
+}
+
+@media only screen and (max-width: 278px) {
+  .vinyl-disc-section {
+    top: 136vmin;
+  }
+}
+
+@media only screen and (orientation: landscape) and (max-width: 278px) {
+  .vinyl-disc-section {
+    top: 136vmax;
   }
 }
 

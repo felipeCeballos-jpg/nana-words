@@ -5,6 +5,12 @@ let currentSettings = null;
 
 // Our responsive settings for different screen sizes
 const responsiveSettings = {
+  xsmallMobile: {
+    barCount: 15,
+    heightMultiplier: 60,
+    barWidth: '1.5vmax',
+    deviceType: 'xsmallMobile',
+  },
   smallMobile: {
     barCount: 15,
     heightMultiplier: 80,
@@ -25,7 +31,7 @@ const responsiveSettings = {
   },
   mobile: {
     barCount: 15,
-    heightMultiplier: 150,
+    heightMultiplier: 110,
     barWidth: '4vmin',
     deviceType: 'mobile',
   },
@@ -115,6 +121,7 @@ function setupAudioContext() {
 
 // Set up our media queries using matchMedia
 function setupResponsiveQueries() {
+  const xsmallMobile = window.matchMedia('(max-width: 408px)');
   const smallMobile = window.matchMedia('(max-width: 514px)');
   const smallMobileLandScape = window.matchMedia(
     '(orientation: landscape) and (max-width: 514px)'
@@ -140,6 +147,8 @@ function setupResponsiveQueries() {
       } else {
         newSettings = responsiveSettings.mobile;
       }
+    } else if (xsmallMobile.matches) {
+      newSettings = responsiveSettings.xsmallMobile;
     } else if (smallMobile.matches) {
       if (smallMobileLandScape.matches) {
         newSettings = responsiveSettings.smallMobileLandScape;
@@ -151,6 +160,8 @@ function setupResponsiveQueries() {
     } else if (desktopQuery.matches) {
       newSettings = responsiveSettings.desktop;
     }
+
+    console.log('xSmallMobile: ', newSettings);
 
     // Only rebuild if settings actually changed
     if (
