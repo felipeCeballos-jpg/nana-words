@@ -61,6 +61,20 @@
   .playing-widget {
     /* width: 843px; */
     width: 794px;
+    /*  width: 920px; */
+  }
+
+  .playing-widget-container {
+    width: 20.2rem;
+    height: 26.441rem;
+  }
+
+  .playing-video {
+    /* width: 20rem; */
+    width: 20.2rem;
+    height: 26.441rem;
+    left: 52px;
+    top: -17px;
   }
 
   .playing-img {
@@ -70,6 +84,8 @@
     height: 25.269rem; */
     width: 20rem;
     height: 26.187rem;
+    top: -11.5px;
+    left: 58px;
   }
 
   .playing-tools {
@@ -100,6 +116,10 @@
 
   #div-eq-container {
     height: 156px;
+  }
+
+  .equalizer-img {
+    bottom: -37px;
   }
 
   .menu {

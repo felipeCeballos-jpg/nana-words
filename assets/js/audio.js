@@ -6,51 +6,33 @@ let currentSettings = null;
 // Our responsive settings for different screen sizes
 const responsiveSettings = {
   xsmallMobile: {
-    barCount: 15,
+    barCount: 14,
     heightMultiplier: 70,
-    barWidth: '4vmin',
-    deviceType: 'xsmallMobile',
-  },
-  xsmallMobileLandScape: {
-    barCount: 15,
-    heightMultiplier: 60,
-    barWidth: '1.5vmax',
+    barWidth: '6%',
     deviceType: 'xsmallMobile',
   },
   smallMobile: {
-    barCount: 15,
-    heightMultiplier: 80,
-    barWidth: '4vmin',
+    barCount: 16,
+    heightMultiplier: 90,
+    barWidth: '7%',
     deviceType: 'smallMobile',
   },
-  smallMobileLandScape: {
-    barCount: 15,
-    heightMultiplier: 80,
-    barWidth: '5vmax',
-    deviceType: 'smallMobileLandScape',
-  },
-  mobileLandScape: {
-    barCount: 15,
-    heightMultiplier: 150,
-    barWidth: '4.5vmax',
-    deviceType: 'mobileLandScape',
-  },
   mobile: {
-    barCount: 15,
-    heightMultiplier: 110,
-    barWidth: '4vmin',
+    barCount: 16,
+    heightMultiplier: 130,
+    barWidth: '6.5%',
     deviceType: 'mobile',
   },
   tablet: {
     barCount: 16,
-    heightMultiplier: 110,
-    barWidth: '6%',
+    heightMultiplier: 152,
+    barWidth: '7.4%',
     deviceType: 'tablet',
   },
   desktop: {
     barCount: 16,
-    heightMultiplier: 150,
-    barWidth: '6%',
+    heightMultiplier: 210,
+    barWidth: '8.4%',
     deviceType: 'desktop',
   },
 };
@@ -68,6 +50,7 @@ let source = null;
 const playButton = document.querySelector('.play-button');
 const stopButton = document.querySelector('.stop-button');
 const pauseButton = document.querySelector('.pause-button');
+const equalizerImg = document.querySelector('.equalizer-img');
 const playIcon = document.querySelector('.play-icon');
 export const player = new Audio();
 
@@ -127,16 +110,10 @@ function setupAudioContext() {
 
 // Set up our media queries using matchMedia
 function setupResponsiveQueries() {
-  const xsmallMobile = window.matchMedia('(max-width: 408px)');
+  const xsmallMobile = window.matchMedia('(max.width: 390px)');
   const smallMobile = window.matchMedia('(max-width: 514px)');
-  const smallMobileLandScape = window.matchMedia(
-    '(orientation: landscape) and (max-width: 514px)'
-  );
   const mobileQuery = window.matchMedia(
     '(min-width: 515px) and (max-width: 800px)'
-  );
-  const mobileLandScape = window.matchMedia(
-    '(orientation: landscape) and (min-width: 515px) and (max-width: 800px)'
   );
   const tabletQuery = window.matchMedia(
     '(min-width: 801px) and (max-width: 1120px)'
@@ -148,26 +125,23 @@ function setupResponsiveQueries() {
     let newSettings;
 
     if (mobileQuery.matches) {
-      if (mobileLandScape.matches) {
-        newSettings = responsiveSettings.mobileLandScape;
-      } else {
-        newSettings = responsiveSettings.mobile;
-      }
+      newSettings = responsiveSettings.mobile;
+    } else if (smallMobile.matches) {
+      newSettings = responsiveSettings.smallMobile;
     } else if (xsmallMobile.matches) {
       newSettings = responsiveSettings.xsmallMobile;
-    } else if (smallMobile.matches) {
-      if (smallMobileLandScape.matches) {
-        newSettings = responsiveSettings.smallMobileLandScape;
-      } else {
-        newSettings = responsiveSettings.smallMobile;
-      }
     } else if (tabletQuery.matches) {
       newSettings = responsiveSettings.tablet;
     } else if (desktopQuery.matches) {
       newSettings = responsiveSettings.desktop;
     }
 
-    console.log('xSmallMobile: ', newSettings);
+    // Put the equalizer images here because it got more complicated if I create another logic for it
+    if (mobileQuery.matches || smallMobile.matches || xsmallMobile.matches) {
+      equalizerImg.src = './assets/eq_m.webp';
+    } else {
+      equalizerImg.src = './assets/eq.webp';
+    }
 
     // Only rebuild if settings actually changed
     if (
@@ -193,9 +167,7 @@ function setupResponsiveQueries() {
   // Listen for changes to each media query
   // This is the key advantage of matchMedia - precise boundary detection
   smallMobile.addEventListener('change', updateSettings);
-  smallMobileLandScape.addEventListener('change', updateSettings);
   mobileQuery.addEventListener('change', updateSettings);
-  mobileLandScape.addEventListener('change', updateSettings);
   tabletQuery.addEventListener('change', updateSettings);
   desktopQuery.addEventListener('change', updateSettings);
 }
@@ -213,59 +185,112 @@ function createVisualizerBars() {
   container.innerHTML = '';
   visualizerBars = [];
 
-  // Use current responsive settings to determine bar configuration
+  // Use current responsive settings
   const settings = currentSettings;
-
   const spacing =
     (100 - settings.barCount * parseFloat(settings.barWidth)) /
     (settings.barCount + 1);
-  // Create each bar with proper positioning
-  for (let i = 0; i < settings.barCount; i++) {
-    const bar = document.createElement('div');
 
-    // Calculate position - evenly distribute across container
+  // Create each visualization element
+  for (let i = 0; i < settings.barCount; i++) {
+    // Create container for each visualization element
+    const barContainer = document.createElement('div');
     const position = spacing + i * (parseFloat(settings.barWidth) + spacing);
 
-    // Apply styles for this bar
-    bar.style.width = settings.barWidth;
-    bar.style.left = position + '%';
-    bar.style.height = '0px';
-    bar.style.background = 'url(./assets/x.webp) no-repeat';
-    bar.style.backgroundSize = 'cover';
+    // Style the container
+    barContainer.style.position = 'absolute';
+    barContainer.style.width = settings.barWidth;
+    barContainer.style.left = position + '%';
+    barContainer.style.bottom = '0';
+    barContainer.style.height = '0'; // Initial height
+    barContainer.style.overflow = 'visible'; // Allow overflow to show the leaf/stem at all times
 
-    container.appendChild(bar);
-    visualizerBars.push(bar);
+    // Create SVG element
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '100%');
+    svg.setAttribute('height', '100%');
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    svg.style.position = 'absolute';
+    svg.style.bottom = '0px';
+
+    // The key part - create a group for our elements
+    const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    //group.setAttribute('transform', 'translate(0,543) scale(0.1,-0.1)');
+    let color =
+      settings.deviceType === 'mobile' || settings.deviceType === 'smallMobile'
+        ? '#EF5757'
+        : '#F38585';
+    group.setAttribute('fill', color);
+    group.setAttribute('stroke', 'none');
+
+    // Then, create the leaf shape at the top of the stem
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute(
+      'd',
+      `M495 4957 c-51 -40 -180 -169 -225 -224 -37 -45 -140 -236 -140 -259
+0 -8 -4 -14 -10 -14 -5 0 -10 -8 -10 -19 0 -10 -7 -41 -15 -67 -30 -96 -42
+-270 -28 -406 6 -68 16 -136 22 -153 5 -16 12 -45 16 -64 9 -41 114 -250 152
+-300 24 -32 55 -67 128 -145 11 -12 36 -33 55 -48 l35 -27 0 -1403 c0 -772 3
+-1416 7 -1433 4 -16 9 -100 13 -185 3 -85 10 -159 16 -165 5 -5 9 -17 9 -27 0
+-10 7 -18 15 -18 8 0 15 6 15 13 0 6 6 55 14 107 8 52 19 149 26 215 6 66 15
+145 20 176 6 33 10 579 10 1382 l0 1328 90 89 c89 90 183 220 227 316 29 64
+70 199 84 279 6 33 13 73 16 88 10 54 -62 93 -115 62 -26 -16 -29 -25 -39 -99
+-15 -114 -28 -157 -79 -265 -44 -92 -83 -154 -134 -213 -53 -61 -52 -68 -49
+443 l4 471 -24 19 c-28 23 -74 25 -95 3 -14 -13 -16 -67 -18 -417 -3 -586 -1
+-552 -23 -552 -19 0 -116 123 -157 200 -35 66 -78 196 -85 258 -3 32 -10 60
+-14 63 -12 7 -12 231 0 238 4 3 11 31 15 63 7 62 45 183 79 248 45 89 219 295
+248 295 5 0 50 -46 101 -103 96 -107 191 -253 223 -342 9 -27 21 -59 25 -70 8
+-20 22 -71 42 -153 18 -79 29 -31 25 109 -6 216 -42 330 -151 489 -52 76 -242
+251 -272 250 -5 -1 -27 -15 -49 -33z`
+    );
+
+    // Add elements to the group
+    group.appendChild(path);
+
+    // Add the group to the SVG
+    svg.appendChild(group);
+
+    // Add the SVG to the container
+    barContainer.appendChild(svg);
+    container.appendChild(barContainer);
+
+    // Store for animation
+    visualizerBars.push({
+      container: barContainer,
+      svg: svg,
+      group: group,
+    });
   }
 }
 
-// The animation loop - this is where the magic happens
+// Update the animation function
 function animateVisualizer() {
   if (!isAnimationRunning) {
-    return; // Stop the animation if flag is set to false
+    return;
   }
 
-  // Schedule the next animation frame before doing the work
-  // This ensures smooth animation even if our update takes time
   requestAnimationFrame(animateVisualizer);
-
-  // Get fresh frequency data from the Web Audio API
   analyzer.getByteFrequencyData(frequencyData);
-  // Update each bar based on the frequency data
+
   visualizerBars.forEach((bar, index) => {
-    // Map bar index to frequency data index
-    // We might have fewer bars than frequency data points
     const dataIndex = Math.floor(
       (index / visualizerBars.length) * frequencyData.length
     );
     const frequencyValue = frequencyData[index];
 
-    // Convert frequency value (0-255) to pixel height
-    const height = (currentSettings.heightMultiplier * frequencyValue) / 255;
+    // Calculate height with minimum height to ensure stem is always visible
+    const minHeight = 20; // Minimum stem height
+    const heightPercentage = frequencyValue / 255;
+    const height =
+      minHeight + heightPercentage * currentSettings.heightMultiplier;
 
-    // Apply the height to the bar
-    /* bar.style.height =
-      currentSettings.heightMultiplier === 13 ? height + 'vmax' : height + 'px'; */
-    bar.style.height = height + 'px';
+    // Update container height
+    bar.container.style.height = height + 'px';
+
+    // Update SVG viewBox to maintain proportion
+    bar.svg.setAttribute('viewBox', `0 0 130 ${height}`);
+
+    bar.group.setAttribute('transform', `translate(27,500) scale(0.1,-0.1)`);
   });
 }
 
@@ -324,18 +349,7 @@ playButton.addEventListener('click', () => {
 
   player
     .play()
-    .then(() => {
-      playerState.playing = true;
-
-      playButton.disabled = true;
-      pauseButton.disabled = false;
-      stopButton.disabled = false;
-
-      // Start the visualizer with our simple function
-      startVisualizer();
-
-      playIcon.classList.add('animation-active');
-    })
+    .then(() => {})
     .catch((error) => {
       console.error('Failed to play audio:', error);
       playerState.playing = false;
@@ -352,6 +366,29 @@ stopButton.addEventListener('click', () => {
   player.currentTime = 0; // Reset to beginning
   playerState.playing = false;
 
+  changeVisual([
+    {
+      selector: '.playing-img',
+      animationClass: 'animation-playing-desactive',
+      newAnimationClass: 'animation-playing-active',
+    },
+    {
+      selector: '.playing-video',
+      animationClass: 'animation-playing-active',
+      newAnimationClass: 'animation-playing-desactive',
+    },
+    {
+      selector: '.equalizer-img',
+      animationClass: 'animation-playing-desactive',
+      newAnimationClass: 'animation-playing-active',
+    },
+    {
+      selector: '#visualisation',
+      animationClass: 'animation-playing-active',
+      newAnimationClass: 'animation-playing-desactive',
+    },
+  ]);
+
   playIcon.classList.remove('animation-active');
 
   // Reset the visualizer
@@ -362,21 +399,10 @@ pauseButton.addEventListener('click', () => {
   if (playerState.playing && playerState.loaded) {
     // Currently playing - pause everything
     player.pause();
-    playerState.playing = false;
-    playIcon.classList.remove('animation-active');
-    stopVisualizer();
   } else if (!playerState.playing && playerState.loaded) {
     // Currently paused - resume everything
-    player.play().then(() => {
-      playerState.playing = true;
-      playIcon.classList.add('animation-active');
-      startVisualizer();
-    });
+    player.play();
   }
-
-  playButton.disabled = false;
-  pauseButton.disabled = false;
-  stopButton.disabled = false;
 });
 
 player.onplay = function () {
@@ -385,6 +411,29 @@ player.onplay = function () {
 
     // Start the visualizer with our simple function
     startVisualizer();
+
+    changeVisual([
+      {
+        selector: '.playing-img',
+        animationClass: 'animation-playing-active',
+        newAnimationClass: 'animation-playing-desactive',
+      },
+      {
+        selector: '.playing-video',
+        animationClass: 'animation-playing-desactive',
+        newAnimationClass: 'animation-playing-active',
+      },
+      {
+        selector: '.equalizer-img',
+        animationClass: 'animation-playing-active',
+        newAnimationClass: 'animation-playing-desactive',
+      },
+      {
+        selector: '#visualisation',
+        animationClass: 'animation-playing-desactive',
+        newAnimationClass: 'animation-playing-active',
+      },
+    ]);
 
     playIcon.classList.add('animation-active');
 
@@ -399,8 +448,43 @@ player.onpause = function () {
     playerState.playing = false;
     stopVisualizer();
   }
+
+  changeVisual([
+    {
+      selector: '.playing-img',
+      animationClass: 'animation-playing-desactive',
+      newAnimationClass: 'animation-playing-active',
+    },
+    {
+      selector: '.playing-video',
+      animationClass: 'animation-playing-active',
+      newAnimationClass: 'animation-playing-desactive',
+    },
+    {
+      selector: '.equalizer-img',
+      animationClass: 'animation-playing-desactive',
+      newAnimationClass: 'animation-playing-active',
+    },
+    {
+      selector: '#visualisation',
+      animationClass: 'animation-playing-active',
+      newAnimationClass: 'animation-playing-desactive',
+    },
+  ]);
+
   playIcon.classList.remove('animation-active');
   playButton.disabled = false;
   pauseButton.disabled = false;
   stopButton.disabled = false;
 };
+
+function changeVisual(elements) {
+  if (elements.length === 0) return;
+  elements.forEach(({ selector, animationClass, newAnimationClass }) => {
+    const element = document.querySelector(selector);
+    if (element.classList.contains(animationClass)) {
+      element.classList.remove(animationClass);
+      element.classList.add(newAnimationClass);
+    }
+  });
+}
