@@ -157,6 +157,7 @@ main {
   /* left: 41px; */
   left: 56px;
   transform: rotate(-4.01deg);
+  transition: 2s ease-in-out;
 }
 
 .playing-img {
@@ -169,6 +170,7 @@ main {
   /*  left: 67px; */
   left: 64px;
   transform: rotate(-1deg);
+  transition: 2s ease-in-out;
   /*  left: 50px; */
 }
 
@@ -248,7 +250,6 @@ audio {
   height: 213px;
   position: relative;
   margin: 10px;
-  -webkit-box-reflect: below 53px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.3)));
 }
 
 .equalizer-img {

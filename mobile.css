@@ -46,7 +46,7 @@
   }
 
   .playing-widget-container {
-    width: 61vmin;
+    /* width: 61vmin; */
     height: 100%;
   }
 
