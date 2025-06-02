@@ -136,7 +136,7 @@ main {
 }
 
 .animation-playing-active {
-  display: block;
+  display: flex;
 }
 
 .animation-playing-desactive {
@@ -181,7 +181,8 @@ main {
   flex-direction: column;
   justify-content: flex-end;
   padding-top: 20px;
-  margin-bottom: 1.6rem;
+  /* margin-bottom: 1.6rem; */
+  margin-bottom: 1.9rem;
   max-width: 600px;
   width: 31.749rem;
   transform: rotate(-2deg);
@@ -265,12 +266,20 @@ audio {
   border-radius: 50%;
 }
 
-#visualisation > div {
-  display: inline-block;
+#visualisation {
+  width: 100%;
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 5px;
+  overflow: hidden;
+}
 
-  /* min-height: 53.1px !important; */
+#visualisation > div {
+  position: relative;
+  bottom: 0px;
 }
 
 #round-visualisation {
@@ -479,6 +488,55 @@ audio {
 .animation-active #petal16 {
   animation: fullCycle 4s 1.5s infinite;
 }
+/* 
+.animation-reverse #petal1 {
+  animation: fullCycle 4s 0s reverse;
+}
+.animation-reverse #petal2 {
+  animation: fullCycle 4s 0.1s reverse;
+}
+.animation-reverse #petal3 {
+  animation: fullCycle 4s 0.2s reverse;
+}
+.animation-reverse .petal4 {
+  animation: fullCycle 4s 0.3s reverse;
+}
+.animation-reverse #petal5 {
+  animation: fullCycle 4s 0.4s reverse;
+}
+.animation-reverse #petal6 {
+  animation: fullCycle 4s 0.5s reverse;
+}
+.animation-reverse #petal7 {
+  animation: fullCycle 4s 0.6s reverse;
+}
+.animation-reverse #petal8 {
+  animation: fullCycle 4s 0.7s reverse;
+}
+.animation-reverse #petal9 {
+  animation: fullCycle 4s 0.8s reverse;
+}
+.animation-reverse #petal10 {
+  animation: fullCycle 4s 0.9s reverse;
+}
+.animation-reverse #petal11 {
+  animation: fullCycle 4s 1s reverse;
+}
+.animation-reverse #petal12 {
+  animation: fullCycle 4s 1.1s reverse;
+}
+.animation-reverse #petal13 {
+  animation: fullCycle 4s 1.2s reverse;
+}
+.animation-reverse #petal14 {
+  animation: fullCycle 4s 1.3s reverse;
+}
+.animation-reverse #petal15 {
+  animation: fullCycle 4s 1.4s reverse;
+}
+.animation-reverse #petal16 {
+  animation: fullCycle 4s 1.5s reverse;
+} */
 
 @keyframes fullCycle {
   0% {

@@ -91,6 +91,7 @@
   .playing-tools {
     /* max-width: 26.031rem; */
     max-width: 24.8rem;
+    margin-bottom: 1.3rem;
   }
 
   .play {
@@ -116,10 +117,12 @@
 
   #div-eq-container {
     height: 156px;
+    margin: 10px 10px 10px 1px;
   }
 
   .equalizer-img {
-    bottom: -37px;
+    /*  bottom: -37px; */
+    bottom: -28px;
   }
 
   .menu {
