@@ -25,7 +25,7 @@ const responsiveSettings = {
   },
   desktop: {
     barCount: 16,
-    heightMultiplier: 146,
+    heightMultiplier: 139,
     barWidth: '30.4px',
     deviceType: 'desktop',
   },
@@ -139,8 +139,7 @@ function setupResponsiveQueries() {
     // Only rebuild if settings actually changed
     if (
       !currentSettings ||
-      currentSettings.barCount !== newSettings.barCount ||
-      currentSettings.barWidth !== newSettings.barWidth
+      currentSettings.deviceType !== newSettings.deviceType
     ) {
       currentSettings = newSettings;
 
@@ -152,6 +151,8 @@ function setupResponsiveQueries() {
       // If only height multiplier changed, just update that
       currentSettings = newSettings;
     }
+
+    console.log('True Update Settings');
   }
 
   // Set initial settings
@@ -209,6 +210,10 @@ function createVisualizerBars() {
       settings.deviceType === 'landScapemobile'
         ? '#EF5757'
         : '#F38585';
+
+    console.log('Group SVG Color: ', color);
+    console.log('Device Type: ', settings.deviceType);
+
     group.setAttribute('fill', color);
     group.setAttribute('stroke', 'none');
 
@@ -266,11 +271,13 @@ function animateVisualizer() {
 export function startVisualizer() {
   // Make sure we have current responsive settings
   if (!currentSettings) {
+    console.log('No Current Settings');
     setupResponsiveQueries();
   }
 
   // Create bars if they don't exist
   if (visualizerBars.length === 0) {
+    console.log('Visualiazer Bars are less or equal than 0: ', visualizerBars);
     createVisualizerBars();
   }
 
