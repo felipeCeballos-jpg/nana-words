@@ -440,7 +440,7 @@ audio {
 }
 
 /* PLAY ANIMATION (START) */
-.animation-active #petal1 {
+/* .animation-active #petal1 {
   animation: fullCycle 4s 0s infinite;
 }
 .animation-active #petal2 {
@@ -487,56 +487,59 @@ audio {
 }
 .animation-active #petal16 {
   animation: fullCycle 4s 1.5s infinite;
-}
-/* 
-.animation-reverse #petal1 {
-  animation: fullCycle 4s 0s reverse;
-}
-.animation-reverse #petal2 {
-  animation: fullCycle 4s 0.1s reverse;
-}
-.animation-reverse #petal3 {
-  animation: fullCycle 4s 0.2s reverse;
-}
-.animation-reverse .petal4 {
-  animation: fullCycle 4s 0.3s reverse;
-}
-.animation-reverse #petal5 {
-  animation: fullCycle 4s 0.4s reverse;
-}
-.animation-reverse #petal6 {
-  animation: fullCycle 4s 0.5s reverse;
-}
-.animation-reverse #petal7 {
-  animation: fullCycle 4s 0.6s reverse;
-}
-.animation-reverse #petal8 {
-  animation: fullCycle 4s 0.7s reverse;
-}
-.animation-reverse #petal9 {
-  animation: fullCycle 4s 0.8s reverse;
-}
-.animation-reverse #petal10 {
-  animation: fullCycle 4s 0.9s reverse;
-}
-.animation-reverse #petal11 {
-  animation: fullCycle 4s 1s reverse;
-}
-.animation-reverse #petal12 {
-  animation: fullCycle 4s 1.1s reverse;
-}
-.animation-reverse #petal13 {
-  animation: fullCycle 4s 1.2s reverse;
-}
-.animation-reverse #petal14 {
-  animation: fullCycle 4s 1.3s reverse;
-}
-.animation-reverse #petal15 {
-  animation: fullCycle 4s 1.4s reverse;
-}
-.animation-reverse #petal16 {
-  animation: fullCycle 4s 1.5s reverse;
 } */
+
+#petal1.animate {
+  animation: fullCycle 4s 0s infinite;
+}
+#petal2.animate {
+  animation: fullCycle 4s 0.1s infinite;
+}
+#petal3.animate {
+  animation: fullCycle 4s 0.2s infinite;
+}
+/* .petal4.animate {
+  animation: fullCycle 4s 0.3s infinite;
+} */
+#petal4.animate {
+  animation: fullCycle 4s 0.3s infinite;
+}
+#petal5.animate {
+  animation: fullCycle 4s 0.4s infinite;
+}
+#petal6.animate {
+  animation: fullCycle 4s 0.5s infinite;
+}
+#petal7.animate {
+  animation: fullCycle 4s 0.6s infinite;
+}
+#petal8.animate {
+  animation: fullCycle 4s 0.7s infinite;
+}
+#petal9.animate {
+  animation: fullCycle 4s 0.8s infinite;
+}
+#petal10.animate {
+  animation: fullCycle 4s 0.9s infinite;
+}
+#petal11.animate {
+  animation: fullCycle 4s 1s infinite;
+}
+#petal12.animate {
+  animation: fullCycle 4s 1.1s infinite;
+}
+#petal13.animate {
+  animation: fullCycle 4s 1.2s infinite;
+}
+#petal14.animate {
+  animation: fullCycle 4s 1.3s infinite;
+}
+#petal15.animate {
+  animation: fullCycle 4s 1.4s infinite;
+}
+#petal16.animate {
+  animation: fullCycle 4s 1.5s infinite;
+}
 
 @keyframes fullCycle {
   0% {

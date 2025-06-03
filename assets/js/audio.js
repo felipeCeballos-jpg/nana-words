@@ -403,6 +403,7 @@ player.onplay = function () {
   ]);
 
   playIcon.classList.add('animation-active');
+  startPetalAnimation();
 
   playButton.disabled = true;
   pauseButton.disabled = false;
@@ -440,13 +441,10 @@ player.onpause = function () {
   playIcon.classList.remove('animation-active');
   /* playIcon.classList.add('animation-reverse'); */
 
+  resetPetalAnimationx();
   playButton.disabled = false;
   pauseButton.disabled = false;
   stopButton.disabled = false;
-
-  /* setTimeout(() => {
-    playIcon.classList.remove('animation-reverse');
-  }, 4000); */
 };
 
 function changeVisual(elements) {
@@ -458,4 +456,128 @@ function changeVisual(elements) {
       element.classList.add(newAnimationClass);
     }
   });
+}
+
+let isPetalAnimation = false;
+let isPetalResetting = false;
+let resetPetalTimeouts = [];
+const petals = document.querySelectorAll('.petal');
+
+function startPetalAnimation() {
+  if (isPetalAnimation || isPetalResetting) return;
+
+  isAnimationRunning = true;
+
+  playButton.disabled = true;
+  pauseButton.disabled = false;
+  stopButton.disabled = false;
+
+  // Get all petals and ensure they're at starting position
+  petals.forEach((petal) => {
+    petal.style.transition = 'none';
+    petal.setAttribute('transform', 'scale(1)');
+    petal.style.opacity = 1;
+
+    petal.offsetHeight;
+    petal.style.transition = '';
+    petal.classList.remove('animate');
+  });
+
+  // Add animate class to trigger infinite animations
+  setTimeout(() => {
+    petals.forEach((petal) => {
+      petal.classList.add('animate');
+    });
+  }, 10);
+}
+
+function resetPetalAnimationx() {
+  if (isPetalResetting) return;
+
+  isPetalResetting = true;
+
+  // Clear any pending timeouts
+  resetPetalTimeouts.forEach((timeout) => clearTimeout(timeout));
+  resetPetalTimeouts = [];
+
+  playButton.disabled = true;
+  pauseButton.disabled = true;
+  stopButton.disabled = true;
+
+  const petalStates = [];
+
+  petals.forEach((petal) => {
+    const computedStyle = window.getComputedStyle(petal);
+    /*  const currentScale = parseFloat(
+      computedStyle.getPropertyValue('transform')
+    ); */
+    const currentScale = computedStyle
+      .getPropertyValue('transform')
+      .match(/-?[\d.]+/g)
+      .map(Number);
+
+    // Stop animation and apply current state
+    petal.classList.remove('animate');
+    petal.style.animation = 'none';
+
+    petal.setAttribute('transform', `scale(${currentScale[0]})`);
+    if (currentScale[0] < 1) {
+      petal.style.opacity = 0;
+    }
+
+    // Store state for ordering
+    petalStates.push({
+      element: petal,
+      scale: currentScale[0],
+      needsReset: currentScale[0] < 1,
+    });
+  });
+
+  // Sort petals by how far they are from the original position
+  // Petals that are furthest away (most disappeared) should come back first
+  petalStates
+    .sort((a, b) => {
+      const distA = Math.abs(a.scale - 1);
+      const distB = Math.abs(b.scale - 1);
+
+      return distB - distA;
+    })
+    .reverse();
+
+  // Reset petals one by one
+  let delay = 0;
+  petalStates.forEach((petalState) => {
+    if (petalState.needsReset) {
+      const timeout = setTimeout(() => {
+        /*  petalState.element.animate([{ opacity: 0.85 }, { opacity: 1 }], delay); */
+        petalState.element.setAttribute('transform', 'scale(1)');
+        petalState.element.style.opacity = 1;
+      }, delay);
+
+      resetPetalTimeouts.push(timeout);
+      delay += 150;
+    }
+  });
+
+  // Complete reset after all petals are restored
+  const totalResetTime = delay + 500;
+  setTimeout(() => {
+    completeReset();
+  }, totalResetTime);
+}
+
+function completeReset() {
+  petals.forEach((petal) => {
+    petal.style.transition = '';
+    petal.style.animation = '';
+    petal.setAttribute('transform', 'scale(1)');
+    petal.style.opacity = 1;
+  });
+
+  playButton.disabled = false;
+  pauseButton.disabled = false;
+  stopButton.disabled = false;
+  isPetalAnimation = false;
+  isPetalResetting = false;
+  resetPetalTimeouts = [];
 }
