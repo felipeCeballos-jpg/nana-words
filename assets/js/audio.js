@@ -151,8 +151,6 @@ function setupResponsiveQueries() {
       // If only height multiplier changed, just update that
       currentSettings = newSettings;
     }
-
-    console.log('True Update Settings');
   }
 
   // Set initial settings
@@ -211,9 +209,6 @@ function createVisualizerBars() {
         ? '#EF5757'
         : '#F38585';
 
-    console.log('Group SVG Color: ', color);
-    console.log('Device Type: ', settings.deviceType);
-
     group.setAttribute('fill', color);
     group.setAttribute('stroke', 'none');
 
@@ -271,13 +266,11 @@ function animateVisualizer() {
 export function startVisualizer() {
   // Make sure we have current responsive settings
   if (!currentSettings) {
-    console.log('No Current Settings');
     setupResponsiveQueries();
   }
 
   // Create bars if they don't exist
   if (visualizerBars.length === 0) {
-    console.log('Visualiazer Bars are less or equal than 0: ', visualizerBars);
     createVisualizerBars();
   }
 
