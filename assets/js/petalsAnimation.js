@@ -225,7 +225,7 @@ function setPausingState({ playButton, pauseButton, stopButton }) {
 
 function setStoppingState({ playButton, pauseButton, stopButton }) {
   animationState = STATES.STOPPING;
-  playButton.disabled = true;
+  playButton.disabled = false;
   pauseButton.disabled = true;
   stopButton.disabled = true;
 }
