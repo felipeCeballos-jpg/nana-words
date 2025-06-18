@@ -26,15 +26,6 @@ const loader = document.querySelector('.loader');
 initLanguage(html);
 //initAudio(stopButton, pauseButton);
 
-function handleKeyDown(event) {
-  if (event.code === 'Space') {
-  }
-
-  console.log(event.keyCode);
-}
-
-window.addEventListener('keydown', handleKeyDown);
-
 const startLoadingTime = Date.now();
 window.addEventListener('load', () => {
   checkLoaded(startLoadingTime, loader, true);

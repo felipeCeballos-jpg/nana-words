@@ -73,3 +73,50 @@ export function setLanguage(html) {
   localStorage.setItem('language', currentLang);
   html.lang = currentLang;
 }
+
+export const VISUAL_STATES = {
+  PLAYING: [
+    {
+      selector: '.playing-img',
+      animationClass: 'animation-playing-active',
+      newAnimationClass: 'animation-playing-desactive',
+    },
+    {
+      selector: '.playing-video',
+      animationClass: 'animation-playing-desactive',
+      newAnimationClass: 'animation-playing-active',
+    },
+    {
+      selector: '.equalizer-img',
+      animationClass: 'animation-playing-active',
+      newAnimationClass: 'animation-playing-desactive',
+    },
+    {
+      selector: '#visualisation',
+      animationClass: 'animation-playing-desactive',
+      newAnimationClass: 'animation-playing-active',
+    },
+  ],
+  STOPPED: [
+    {
+      selector: '.playing-img',
+      animationClass: 'animation-playing-desactive',
+      newAnimationClass: 'animation-playing-active',
+    },
+    {
+      selector: '.playing-video',
+      animationClass: 'animation-playing-active',
+      newAnimationClass: 'animation-playing-desactive',
+    },
+    {
+      selector: '.equalizer-img',
+      animationClass: 'animation-playing-desactive',
+      newAnimationClass: 'animation-playing-active',
+    },
+    {
+      selector: '#visualisation',
+      animationClass: 'animation-playing-active',
+      newAnimationClass: 'animation-playing-desactive',
+    },
+  ],
+};
