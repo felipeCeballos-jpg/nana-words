@@ -23,3 +23,30 @@ export const footerEnTranslateImgs = [
 export const originalRuImages = ['./assets/klubok_en.png'];
 
 export const originalEnImages = ['./assets/klubok_ru.png'];
+
+export const VISUAL_STATES = {
+  PLAYING: [
+    {
+      selector: '.playing-img',
+      animationClass: 'animation-playing-active',
+      newAnimationClass: 'animation-playing-desactive',
+    },
+    {
+      selector: '.playing-video',
+      animationClass: 'animation-playing-desactive',
+      newAnimationClass: 'animation-playing-active',
+    },
+  ],
+  STOPPED: [
+    {
+      selector: '.playing-img',
+      animationClass: 'animation-playing-desactive',
+      newAnimationClass: 'animation-playing-active',
+    },
+    {
+      selector: '.playing-video',
+      animationClass: 'animation-playing-active',
+      newAnimationClass: 'animation-playing-desactive',
+    },
+  ],
+};

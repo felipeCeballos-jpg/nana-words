@@ -202,6 +202,11 @@ main {
   margin: 0px;
   padding: 0px;
   cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.playing-button:hover:not(:disabled) {
+  transform: scale(1.03);
 }
 
 .play {
@@ -225,12 +230,12 @@ main {
   fill: #1d1d1d;
   transform-origin: center;
 } */
-.icon path:not(.play-cirlce) {
+.icon path:not(.play-circle) {
   fill: #1d1d1d;
   transform-origin: center;
 }
 
-button:disabled > svg > .play-icon > path:not(.play-cirlce),
+button:disabled > svg > .play-icon > path:not(.play-circle),
 button:disabled > svg > .stop-icon > path,
 button:disabled > svg > .pause-icon > path {
   /* fill: #6d6152; */
@@ -267,6 +272,7 @@ audio {
 }
 
 #visualisation {
+  display: flex;
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -430,6 +436,15 @@ audio {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes activeMenu {
+  from {
+    transform: translateY(19rem);
+  }
+  to {
+    transform: translateY(0);
   }
 }
 

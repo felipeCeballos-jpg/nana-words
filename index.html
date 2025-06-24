@@ -8,11 +8,6 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <title>Nana's words</title>
-    <script
-      src="https://code.jquery.com/jquery-2.2.4.min.js"
-      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-      crossorigin="anonymous"
-    ></script>
     <link rel="stylesheet" href="./index.css" />
     <link rel="stylesheet" href="mobile.css" media="(max-width: 800px)" />
     <link
@@ -148,7 +143,7 @@
                           d="M71.9981 61.7299C72.0333 61.7774 72.057 61.8324 72.0674 61.8905C72.0777 61.9487 72.0745 62.0085 72.058 62.0652C72.0539 62.8658 71.7984 63.6449 71.3276 64.2924C70.7648 64.951 69.7829 65.4061 68.0226 64.7954C67.8684 64.7331 67.7265 64.6439 67.6035 64.5319C65.9239 61.8923 64.622 59.0306 63.7358 56.0301C61.2949 47.7542 62.1799 38.8525 66.2025 31.2192C66.3342 30.9557 66.5378 30.5845 66.7294 30.2492L67.3281 29.2434L67.9149 28.2375L68.2022 27.7226C68.2022 27.6508 68.298 27.543 68.3579 27.4951L68.6453 27.567L70.9085 28.1777C71.6269 28.3573 72.5609 28.6447 72.8124 28.7405C76.0519 29.8228 79.1053 31.398 81.865 33.4105C83.2815 34.4284 84.6112 35.5619 85.8405 36.7992C85.8405 36.7992 86.2117 37.1944 86.7745 37.9009L87.7445 39.1702L88.8581 40.8346C90.5154 43.5117 91.7285 46.4394 92.4504 49.5041C92.8742 51.1163 93.0399 52.7854 92.9413 54.4495C92.8216 55.3835 92.5821 55.6469 92.2947 55.4314C91.7319 55.0243 90.9296 52.797 89.6723 50.3063C88.6868 48.4287 87.587 46.6131 86.3794 44.87C85.4538 43.6528 84.4413 42.5043 83.3499 41.4333C82.9188 40.9903 82.4997 40.667 82.2243 40.4155L81.8052 40.0323C80.8806 39.1756 79.9049 38.3758 78.8834 37.6374C76.5511 35.9496 73.9694 34.6365 71.2318 33.7458L70.8965 33.626V33.6979C70.2256 34.9693 69.6531 36.2904 69.1841 37.6494C67.8287 41.6192 67.3779 45.8418 67.8648 50.0083C68.3517 54.1747 69.7639 58.1796 71.9981 61.7299Z"
                         />
                         <path
-                        class="play-cirlce"
+                          class="play-circle"
                           fill="#F8EBDD"
                           d="M139.468 99.9266C138.397 122.917 118.525 139.995 95.66 138.93C72.795 137.865 55.9762 119.301 57.0472 96.3111C58.1183 73.3211 76.6111 55.9538 99.4761 57.019C122.341 58.0842 140.539 76.9367 139.468 99.9266Z"
                         />
@@ -329,29 +324,15 @@
                       </g>
                     </svg>
                   </button>
-                  <!-- <button
-                    class="play-button center-div"
-                    onclick="play_song(this)"
-                  >
-                    play
-                  </button> -->
                 </div>
                 <div id="div-player-container">
                   <div class="center-div">
                     <div id="div-eq-container">
-                      <img class="equalizer-img animation-playing-active" src="" alt="equializer"></img>
-                      <div id="visualisation" class="animation-playing-desactive"></div>
+                      <div id="visualisation"></div>
                       <div id="div-vis-round" class="center-div">
                         <div></div>
                       </div>
                     </div>
-                    <audio
-                      crossorigin="anonymous"
-                      controls="controls"
-                      preload="auto"
-                      id="player"
-                      type="audio/mpeg"
-                    ></audio>
                   </div>
                 </div>
               </div>
@@ -399,7 +380,6 @@
       </section>
     </main>
     <script type="module" src="./assets/js/script.js"></script>
-    <script type="module" src="./assets/js/audio.js"></script>
-    
+    <script type="module" src="./assets/js/audio/audio.js"></script>
   </body>
 </html>

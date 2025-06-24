@@ -74,49 +74,13 @@ export function setLanguage(html) {
   html.lang = currentLang;
 }
 
-export const VISUAL_STATES = {
-  PLAYING: [
-    {
-      selector: '.playing-img',
-      animationClass: 'animation-playing-active',
-      newAnimationClass: 'animation-playing-desactive',
-    },
-    {
-      selector: '.playing-video',
-      animationClass: 'animation-playing-desactive',
-      newAnimationClass: 'animation-playing-active',
-    },
-    {
-      selector: '.equalizer-img',
-      animationClass: 'animation-playing-active',
-      newAnimationClass: 'animation-playing-desactive',
-    },
-    {
-      selector: '#visualisation',
-      animationClass: 'animation-playing-desactive',
-      newAnimationClass: 'animation-playing-active',
-    },
-  ],
-  STOPPED: [
-    {
-      selector: '.playing-img',
-      animationClass: 'animation-playing-desactive',
-      newAnimationClass: 'animation-playing-active',
-    },
-    {
-      selector: '.playing-video',
-      animationClass: 'animation-playing-active',
-      newAnimationClass: 'animation-playing-desactive',
-    },
-    {
-      selector: '.equalizer-img',
-      animationClass: 'animation-playing-desactive',
-      newAnimationClass: 'animation-playing-active',
-    },
-    {
-      selector: '#visualisation',
-      animationClass: 'animation-playing-active',
-      newAnimationClass: 'animation-playing-desactive',
-    },
-  ],
-};
+export function changeAnimation(elements) {
+  if (elements.length === 0) return;
+  elements.forEach(({ selector, animationClass, newAnimationClass }) => {
+    const element = document.querySelector(selector);
+    if (element.classList.contains(animationClass)) {
+      element.classList.remove(animationClass);
+      element.classList.add(newAnimationClass);
+    }
+  });
+}
