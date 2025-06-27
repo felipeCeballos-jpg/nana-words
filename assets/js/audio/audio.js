@@ -2,7 +2,7 @@ import {
   playPetalAnimationWhenPausing,
   playPetalAnimationWhenPlaying,
   playPetalAnimationWhenStopping,
-} from './petalsAnimation.js';
+} from './playButtonPetalsAnimation.js';
 import { VISUAL_STATES } from '../constant.js';
 import { changeAnimation } from '../util.js';
 import { STATES, playerState, stateMachine } from './stateMachine.js';
