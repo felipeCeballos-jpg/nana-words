@@ -1,3 +1,6 @@
+// This file is for the play button animation for all the different states
+import { isStopAnimationRunning } from './audio.js';
+
 // CONSTANTS
 const PETAL_STATES = {
   VISIBLE: {
@@ -213,7 +216,7 @@ function setPlayingState({ playButton, pauseButton, stopButton }) {
   animationState = STATES.PLAYING;
   playButton.disabled = true;
   pauseButton.disabled = false;
-  stopButton.disabled = false;
+  if (!isStopAnimationRunning) stopButton.disabled = false;
 }
 
 function setPausingState({ playButton, pauseButton, stopButton }) {
@@ -230,7 +233,7 @@ function setStoppingState({ playButton, pauseButton, stopButton }) {
   stopButton.disabled = true;
 }
 
-export function playPetalAnimation(controls) {
+export function playPetalAnimationWhenPlaying(controls) {
   if (animationState === STATES.IDLE) {
     setPlayingState(controls);
     petalMode = MODES.REMOVE;
@@ -253,7 +256,7 @@ export function playPetalAnimation(controls) {
  * First Click:
  * Freeze the animation on the exact current frame.
  */
-export function pausePetalAnimation(controls) {
+export function playPetalAnimationWhenPausing(controls) {
   const currentPetal = PETALS[currentPetalIndex];
 
   setPausingState(controls);
@@ -270,7 +273,7 @@ export function pausePetalAnimation(controls) {
  * Interruption Handling:
  * If Play is clicked during the reverse (Stop) cycle:
  * Abort the reversal and resume the standard clockwise animation. */
-export function stopPetalAnimation(controls) {
+export function playPetalAnimationWhenStopping(controls) {
   petalMode = petalMode === MODES.ADD ? MODES.REMOVE : MODES.ADD;
 
   if (animationState === STATES.PLAYING || animationState === STATES.PAUSING) {

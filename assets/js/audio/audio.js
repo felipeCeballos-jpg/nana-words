@@ -1,7 +1,7 @@
 import {
-  pausePetalAnimation,
-  playPetalAnimation,
-  stopPetalAnimation,
+  playPetalAnimationWhenPausing,
+  playPetalAnimationWhenPlaying,
+  playPetalAnimationWhenStopping,
 } from './petalsAnimation.js';
 import { VISUAL_STATES } from '../constant.js';
 import { changeAnimation } from '../util.js';
@@ -21,6 +21,7 @@ let animationFrame = null;
 let isReverseAnimationRunning = false;
 let heightsAtStop = []; // Store start
 let reverseAnimationProgress = 0;
+export let isStopAnimationRunning = false; // we need this so that the stop button stays disabled while animation is running
 
 let audioContext = null;
 let analyzer = null;
@@ -412,14 +413,23 @@ stopButton.addEventListener('click', () => {
     // Stopped animation
     changeAnimation(VISUAL_STATES.STOPPED);
 
-    // Actived Petal Animation
-    stopPetalAnimation({ playButton, pauseButton, stopButton });
-    /*  playButton.disabled = false;
-    pauseButton.disabled = true;
-    stopButton.disabled = true; */
+    // Play Petal Animation
+    playPetalAnimationWhenStopping({ playButton, pauseButton, stopButton });
 
-    // Start the reverse animation to return petals to starting position
+    // Start the reverse animation to return petals to starting position for play button
     startReverseAnimation();
+
+    // stop button animation
+    stopButton.classList.add('stop-animation-active');
+    const totalStopAnimationTime = 1730; // total time of stop button animation
+    isStopAnimationRunning = true;
+
+    // makes stop button active and removes class when animation completed
+    setTimeout(() => {
+      stopButton.classList.remove('stop-animation-active');
+      stopButton.disabled = false;
+      isStopAnimationRunning = false;
+    }, totalStopAnimationTime);
   }
 });
 
@@ -439,7 +449,7 @@ player.onplay = function () {
   // Start animation functions
   startVisualizer();
   changeAnimation(VISUAL_STATES.PLAYING);
-  playPetalAnimation({ playButton, pauseButton, stopButton });
+  playPetalAnimationWhenPlaying({ playButton, pauseButton, stopButton });
 };
 
 player.onpause = function () {
@@ -448,6 +458,6 @@ player.onpause = function () {
 
     stopVisualizer();
     changeAnimation(VISUAL_STATES.STOPPED);
-    pausePetalAnimation({ playButton, pauseButton, stopButton });
+    playPetalAnimationWhenPausing({ playButton, pauseButton, stopButton });
   }
 };

@@ -224,6 +224,91 @@ main {
   height: 10.827rem;
 }
 
+@keyframes reappear {
+  0% {
+    transform: scale(0.4);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes disappear {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.4);
+  }
+}
+
+/* IMPORTANT: if you change the time of the animation here, you must update totalStopAnimationTime in audio.js */
+.stop-animation-active #petal-stop-1 {
+  animation: disappear 0.08s 0s forwards, reappear 0.15s 0.83s forwards;
+}
+
+.stop-animation-active #petal-stop-2 {
+  animation: disappear 0.08s 0.05s forwards, reappear 0.15s 0.88s forwards;
+}
+
+.stop-animation-active #petal-stop-3 {
+  animation: disappear 0.08s 0.1s forwards, reappear 0.15s 0.93s forwards;
+}
+
+.stop-animation-active #petal-stop-4 {
+  animation: disappear 0.08s 0.15s forwards, reappear 0.15s 0.98s forwards;
+}
+
+.stop-animation-active #petal-stop-5 {
+  animation: disappear 0.08s 0.2s forwards, reappear 0.15s 1.03s forwards;
+}
+
+.stop-animation-active #petal-stop-6 {
+  animation: disappear 0.08s 0.25s forwards, reappear 0.15s 1.08s forwards;
+}
+
+.stop-animation-active #petal-stop-7 {
+  animation: disappear 0.08s 0.3s forwards, reappear 0.15s 1.13s forwards;
+}
+
+.stop-animation-active #petal-stop-8 {
+  animation: disappear 0.08s 0.35s forwards, reappear 0.15s 1.18s forwards;
+}
+
+.stop-animation-active #petal-stop-9 {
+  animation: disappear 0.08s 0.4s forwards, reappear 0.15s 1.23s forwards;
+}
+
+.stop-animation-active #petal-stop-10 {
+  animation: disappear 0.08s 0.45s forwards, reappear 0.15s 1.28s forwards;
+}
+
+.stop-animation-active #petal-stop-11 {
+  animation: disappear 0.08s 0.5s forwards, reappear 0.15s 1.33s forwards;
+}
+
+.stop-animation-active #petal-stop-12 {
+  animation: disappear 0.08s 0.55s forwards, reappear 0.15s 1.38s forwards;
+}
+
+.stop-animation-active #petal-stop-13 {
+  animation: disappear 0.08s 0.6s forwards, reappear 0.15s 1.43s forwards;
+}
+
+.stop-animation-active #petal-stop-14 {
+  animation: disappear 0.08s 0.65s forwards, reappear 0.15s 1.48s forwards;
+}
+
+.stop-animation-active #petal-stop-15 {
+  animation: disappear 0.08s 0.7s forwards, reappear 0.15s 1.53s forwards;
+}
+
+.stop-animation-active #petal-stop-16 {
+  animation: disappear 0.08s 0.75s forwards, reappear 0.15s 1.58s forwards;
+}
+
 /* .play-icon,
 .stop-icon,
 .pause-icon {
@@ -236,7 +321,7 @@ main {
 }
 
 button:disabled > svg > .play-icon > path:not(.play-circle),
-button:disabled > svg > .stop-icon > path,
+button:disabled > svg > .stop-icon > path:not(.play-circle),
 button:disabled > svg > .pause-icon > path {
   /* fill: #6d6152; */
   fill: #463b3a;
