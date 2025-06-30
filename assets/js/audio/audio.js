@@ -401,6 +401,13 @@ playButton.addEventListener('click', () => {
 });
 
 stopButton.addEventListener('click', () => {
+  // Resets petals back to starting position
+  if (playerState.currentState === STATES.PAUSED) {
+    pauseButton.classList.remove('pause-animation-active');
+    pauseButton.classList.add('resume-animation-active');
+    handlePauseAnimationDisable();
+  }
+
   if (
     playerState.currentState === STATES.PLAYING ||
     playerState.currentState === STATES.PAUSED
@@ -427,7 +434,8 @@ stopButton.addEventListener('click', () => {
     // makes stop button active and removes class when animation completed
     setTimeout(() => {
       stopButton.classList.remove('stop-animation-active');
-      stopButton.disabled = false;
+      stopButton.disabled =
+        playerState.currentState === STATES.STOPPED ? true : false;
       isStopAnimationRunning = false;
     }, totalStopAnimationTime);
   }
@@ -443,7 +451,20 @@ pauseButton.addEventListener('click', () => {
   }
 });
 
+// todo - refactor + magic numbers
+const handlePauseAnimationDisable = () => {
+  pauseButton.disabled = true;
+  setTimeout(() => {
+    pauseButton.disabled = false;
+  }, 400);
+};
+
 player.onplay = function () {
+  if (playerState.currentState === STATES.PAUSED) {
+    pauseButton.classList.remove('pause-animation-active');
+    pauseButton.classList.add('resume-animation-active');
+    handlePauseAnimationDisable();
+  }
   stateMachine.setState(STATES.PLAYING);
 
   // Start animation functions
@@ -454,8 +475,11 @@ player.onplay = function () {
 
 player.onpause = function () {
   if (playerState.currentState === STATES.PLAYING) {
+    // updates pause button petal classes correctly
+    pauseButton.classList.remove('resume-animation-active');
+    pauseButton.classList.add('pause-animation-active');
+    handlePauseAnimationDisable();
     stateMachine.setState(STATES.PAUSED);
-
     stopVisualizer();
     changeAnimation(VISUAL_STATES.STOPPED);
     playPetalAnimationWhenPausing({ playButton, pauseButton, stopButton });

@@ -244,6 +244,15 @@ main {
   }
 }
 
+/* todo: refactor magic numbers */
+.pause-animation-active .pause-petal {
+  animation: disappear 0.4s 0s ease-in forwards;
+}
+
+.resume-animation-active .pause-petal {
+  animation: reappear 0.4s 0s ease-in forwards;
+}
+
 /* IMPORTANT: if you change the time of the animation here, you must update totalStopAnimationTime in audio.js */
 .stop-animation-active #petal-stop-1 {
   animation: disappear 0.08s 0s forwards, reappear 0.15s 0.83s forwards;
@@ -320,9 +329,13 @@ main {
   transform-origin: center;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 button:disabled > svg > .play-icon > path:not(.play-circle),
 button:disabled > svg > .stop-icon > path:not(.play-circle),
-button:disabled > svg > .pause-icon > path {
+button:disabled > svg > .pause-icon > path:not(.play-circle) {
   /* fill: #6d6152; */
   fill: #463b3a;
 }
