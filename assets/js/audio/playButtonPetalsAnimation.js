@@ -1,5 +1,5 @@
 // This file is for the play button animation for all the different states
-import { isStopAnimationRunning } from './audio.js';
+import { isPauseAnimationRunning, isStopAnimationRunning } from './audio.js';
 
 // CONSTANTS
 const PETAL_STATES = {
@@ -215,13 +215,13 @@ function setIdleState({ playButton, pauseButton, stopButton }) {
 function setPlayingState({ playButton, pauseButton, stopButton }) {
   animationState = STATES.PLAYING;
   playButton.disabled = true;
-  pauseButton.disabled = false;
+  if (!isPauseAnimationRunning) pauseButton.disabled = false;
   if (!isStopAnimationRunning) stopButton.disabled = false;
 }
 
 function setPausingState({ playButton, pauseButton, stopButton }) {
   animationState = STATES.PAUSING;
-  playButton.disabled = false;
+  if (!isPauseAnimationRunning) pauseButton.disabled = false;
   if (!isStopAnimationRunning) stopButton.disabled = false;
   pauseButton.disbaled = false;
 }

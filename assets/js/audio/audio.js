@@ -22,6 +22,7 @@ let isReverseAnimationRunning = false;
 let heightsAtStop = []; // Store start
 let reverseAnimationProgress = 0;
 export let isStopAnimationRunning = false; // we need this so that the stop button stays disabled while animation is running
+export let isPauseAnimationRunning = false;
 
 let audioContext = null;
 let analyzer = null;
@@ -446,9 +447,11 @@ pauseButton.addEventListener('click', () => {
 
 const handlePauseAnimationDisable = () => {
   pauseButton.disabled = true;
+  isPauseAnimationRunning = true;
   setTimeout(() => {
     pauseButton.disabled = false;
     pauseButton.classList.remove('pause-animation-active');
+    isPauseAnimationRunning = false;
   }, CONFIG.PAUSE_ANIMATION_LENGTH);
 };
 
