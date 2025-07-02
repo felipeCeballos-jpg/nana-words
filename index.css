@@ -244,13 +244,10 @@ main {
   }
 }
 
-/* todo: refactor magic numbers */
+/* If you change these numbers, you need to update CONFIG.PAUSE_ANIMATION_LENGTH (which is the sum of both incoming and outgoing animation) */
 .pause-animation-active .pause-petal {
-  animation: disappear 0.4s 0s ease-in forwards;
-}
-
-.resume-animation-active .pause-petal {
-  animation: reappear 0.4s 0s ease-in forwards;
+  animation: disappear 0.2s ease-out forwards,
+    reappear 0.3s 0.2s ease-in forwards;
 }
 
 /* IMPORTANT: if you change the time of the animation here, you must update totalStopAnimationTime in audio.js */

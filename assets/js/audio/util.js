@@ -12,6 +12,7 @@ export const CONFIG = {
   BAR_CLASS: '.petalBar',
   SVG_NAMESPACE: 'http://www.w3.org/2000/svg',
   STOP_ANIMATION_LENGTH: 0.02, // How fast petals return to rest (0.02 = slower, 0.08 = faster)
+  PAUSE_ANIMATION_LENGTH: 500, // ms
 };
 
 // Our responsive settings fro different screen sizes

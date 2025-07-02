@@ -401,13 +401,6 @@ playButton.addEventListener('click', () => {
 });
 
 stopButton.addEventListener('click', () => {
-  // Resets petals back to starting position
-  if (playerState.currentState === STATES.PAUSED) {
-    pauseButton.classList.remove('pause-animation-active');
-    pauseButton.classList.add('resume-animation-active');
-    handlePauseAnimationDisable();
-  }
-
   if (
     playerState.currentState === STATES.PLAYING ||
     playerState.currentState === STATES.PAUSED
@@ -451,18 +444,17 @@ pauseButton.addEventListener('click', () => {
   }
 });
 
-// todo - refactor + magic numbers
 const handlePauseAnimationDisable = () => {
   pauseButton.disabled = true;
   setTimeout(() => {
     pauseButton.disabled = false;
-  }, 400);
+    pauseButton.classList.remove('pause-animation-active');
+  }, CONFIG.PAUSE_ANIMATION_LENGTH);
 };
 
 player.onplay = function () {
   if (playerState.currentState === STATES.PAUSED) {
-    pauseButton.classList.remove('pause-animation-active');
-    pauseButton.classList.add('resume-animation-active');
+    pauseButton.classList.add('pause-animation-active');
     handlePauseAnimationDisable();
   }
   stateMachine.setState(STATES.PLAYING);
@@ -476,7 +468,6 @@ player.onplay = function () {
 player.onpause = function () {
   if (playerState.currentState === STATES.PLAYING) {
     // updates pause button petal classes correctly
-    pauseButton.classList.remove('resume-animation-active');
     pauseButton.classList.add('pause-animation-active');
     handlePauseAnimationDisable();
     stateMachine.setState(STATES.PAUSED);
