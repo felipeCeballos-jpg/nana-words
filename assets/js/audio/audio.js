@@ -23,13 +23,12 @@ let heightsAtStop = []; // Store start
 let reverseAnimationProgress = 0;
 export let isStopAnimationRunning = false; // we need this so that the stop button stays disabled while animation is running
 export let isPauseAnimationRunning = false;
+let isPlayorPause = null;
 
 let audioContext = null;
 let analyzer = null;
 let frequencyData = null;
 let source = null;
-
-console.log('init: ', { analyzer });
 
 // Event listeners cleanup array
 let eventListeners = [];
@@ -93,10 +92,8 @@ function setupAudioContext() {
 
     // Create analyzer node
     analyzer = audioContext.createAnalyser();
-    console.log('Analyzer get a value: ', { analyzer });
 
     analyzer.fftSize = CONFIG.FREQUENCY_COUNT;
-    console.log('Analyzer set a fftSize Value: ', { analyzer });
     frequencyData = new Uint8Array(analyzer.frequencyBinCount);
 
     // Create source from audio element
@@ -105,8 +102,6 @@ function setupAudioContext() {
     // Connect the audio nodes
     source.connect(analyzer);
     analyzer.connect(audioContext.destination);
-
-    console.log('analyzer connect: ', { analyzer });
   } catch (error) {
     console.error('Failed to setup audio context:', error);
     stateMachine.setState(STATES.ERROR);
@@ -201,7 +196,6 @@ function animateVisualizer() {
   const visualizerBars = getVisualizerBars();
 
   animationFrame = requestAnimationFrame(animateVisualizer);
-  console.log('AnimateVisualizer: ', { analyzer });
   analyzer.getByteFrequencyData(frequencyData);
 
   visualizerBars.forEach((svg, index) => {
@@ -213,7 +207,6 @@ function animateVisualizer() {
     //const height = currentSettings.heightMultiplier * heightPercentage;
 
     if (height >= CONFIG.MIN_ANIMATION_HEIGHT) {
-      console.log('Entre');
       // Update SVG viewBox to maintain proportion
       svg.setAttribute('width', '100%');
       svg.setAttribute('height', '100%');
@@ -312,8 +305,6 @@ function stopReverseAnimation() {
 export function startVisualizer() {
   // Make sure we have current responsive settings
 
-  console.log({ currentSettings });
-
   if (!currentSettings) {
     setupResponsiveQueries(createVisualizerBars);
   }
@@ -384,6 +375,8 @@ window.addEventListener('beforeunload', cleanup);
 
 // Updated button handlers using the simplified approach
 playButton.addEventListener('click', () => {
+  isPlayorPause = 'playbtn';
+
   if (
     playerState.currentState === STATES.READY ||
     playerState.currentState === STATES.PAUSED ||
@@ -422,7 +415,7 @@ stopButton.addEventListener('click', () => {
 
     // stop button animation
     stopButton.classList.add('stop-animation-active');
-    const totalStopAnimationTime = 1730; // total time of stop button animation
+    const totalStopAnimationTime = 500; // total time of stop button animation
     isStopAnimationRunning = true;
 
     // makes stop button active and removes class when animation completed
@@ -436,6 +429,8 @@ stopButton.addEventListener('click', () => {
 });
 
 pauseButton.addEventListener('click', () => {
+  isPlayorPause = 'pausebtn';
+
   if (playerState.currentState === STATES.PLAYING) {
     // Currently playing - pause everything
     player.pause();
@@ -444,6 +439,12 @@ pauseButton.addEventListener('click', () => {
     player.play();
   }
 });
+
+/* const handleStopAnimationDisable = () => {
+  stopButton.disabled = true;
+  isStopAnimationRunning = true;
+  setTimeout(() => {});
+}; */
 
 const handlePauseAnimationDisable = () => {
   pauseButton.disabled = true;
@@ -456,7 +457,10 @@ const handlePauseAnimationDisable = () => {
 };
 
 player.onplay = function () {
-  if (playerState.currentState === STATES.PAUSED) {
+  if (
+    playerState.currentState === STATES.PAUSED &&
+    isPlayorPause === 'pausebtn'
+  ) {
     pauseButton.classList.add('pause-animation-active');
     handlePauseAnimationDisable();
   }
@@ -466,6 +470,7 @@ player.onplay = function () {
   startVisualizer();
   changeAnimation(VISUAL_STATES.PLAYING);
   playPetalAnimationWhenPlaying({ playButton, pauseButton, stopButton });
+  isPlayorPause = null;
 };
 
 player.onpause = function () {
@@ -478,4 +483,6 @@ player.onpause = function () {
     changeAnimation(VISUAL_STATES.STOPPED);
     playPetalAnimationWhenPausing({ playButton, pauseButton, stopButton });
   }
+
+  isPlayorPause = null;
 };

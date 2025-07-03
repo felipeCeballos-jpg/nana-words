@@ -250,8 +250,13 @@ main {
     reappear 0.3s 0.2s ease-in forwards;
 }
 
+.stop-animation-active .petal-stop {
+  animation: disappear 0.2s ease-out forwards,
+    reappear 0.3s 0.2s ease-in forwards;
+}
+
 /* IMPORTANT: if you change the time of the animation here, you must update totalStopAnimationTime in audio.js */
-.stop-animation-active #petal-stop-1 {
+/* .stop-animation-active #petal-stop-1 {
   animation: disappear 0.08s 0s forwards, reappear 0.15s 0.83s forwards;
 }
 
@@ -313,7 +318,7 @@ main {
 
 .stop-animation-active #petal-stop-16 {
   animation: disappear 0.08s 0.75s forwards, reappear 0.15s 1.58s forwards;
-}
+} */
 
 /* .play-icon,
 .stop-icon,
