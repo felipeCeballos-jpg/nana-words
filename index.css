@@ -335,13 +335,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-button:disabled > svg > .play-icon > path:not(.play-circle),
-button:disabled > svg > .stop-icon > path:not(.play-circle),
-button:disabled > svg > .pause-icon > path:not(.play-circle) {
-  /* fill: #6d6152; */
-  fill: #463b3a;
-}
-
 audio {
   display: none;
   opacity: 0.75;
