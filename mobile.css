@@ -49,8 +49,8 @@
   .playing-widget-container {
     /* width: 61vmin; */
     height: 100%;
-    display: grid;
-    place-content: center;
+    display: flex;
+    justify-content: center;
   }
 
   .playing-img,
