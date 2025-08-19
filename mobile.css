@@ -53,16 +53,22 @@
     justify-content: center;
   }
 
-  .playing-img,
-  .playing-video {
-    /* width: 68vmin; */
+  .playing-img {
     width: 61vmin;
-    height: 100%;
     top: 0rem;
     left: 0rem;
+    margin-bottom: 2vmin;
   }
+
   .playing-video {
-    transform: rotate(-3.4deg);
+    /* width: 68vmin; */
+    width: 61.8vmin;
+    top: -1.7vmin;
+    left: -0.65vmin;
+  }
+
+  .playing-video {
+    transform: rotate(-2.2deg);
   }
 
   .playing-img {
@@ -170,9 +176,15 @@
     top: calc((2vmax + 31.88px + 1.25rem) * -1);
   }
 
-  .playing-img,
-  .playing-video {
+  .playing-img {
     width: 61vmax;
+    margin-bottom: 2vmax;
+  }
+  
+  .playing-video {
+    width: 61.8vmax;
+    top: -1.7vmax;
+    left: -0.65vmax;
   }
 
   .playing-widget {

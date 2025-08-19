@@ -71,10 +71,9 @@
 
   .playing-video {
     /* width: 20rem; */
-    width: 20.2rem;
-    height: 26.441rem;
-    left: 52px;
-    top: -17px;
+    width: 21.2rem;
+    left: 40px;
+    top: -20px;
   }
 
   .playing-img {
@@ -82,10 +81,9 @@
     height: 27.888rem; */
     /*  width: 19.299rem;
     height: 25.269rem; */
-    width: 20rem;
-    height: 26.187rem;
+    width: 21rem;
     top: -11.5px;
-    left: 58px;
+    left: 45px;
   }
 
   .playing-tools {
