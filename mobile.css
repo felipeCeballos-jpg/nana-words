@@ -57,7 +57,7 @@
     width: 61vmin;
     top: 0rem;
     left: 0rem;
-    margin-bottom: 2vmin;
+    margin-bottom: 1.9vmin;
   }
 
   .playing-video {
@@ -178,7 +178,7 @@
 
   .playing-img {
     width: 61vmax;
-    margin-bottom: 2vmax;
+    margin-bottom: 1.9vmax;
   }
   
   .playing-video {
