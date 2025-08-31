@@ -8,7 +8,7 @@ import {
   resetAnimation,
 } from './util.js';
 
-const switchLanguageButton = document.getElementById('language-selector');
+const switchLanguageButton = document.querySelector('.language-button');
 const html = document.querySelector('html');
 /* const playButton = document.querySelector('.play-button');
 const stopButton = document.querySelector('.stop-button');

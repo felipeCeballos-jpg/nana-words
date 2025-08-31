@@ -16,10 +16,14 @@
     z-index: 2;
   }
 
+  .language-button {
+    margin-right: 0rem;
+   margin-bottom: 1rem;
+    right: 40px;
+  }
+
   .language-selector {
     width: 79px;
-    right: 60px;
-    margin-right: 0rem;
   }
 
   .vinyl-section {

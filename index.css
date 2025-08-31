@@ -84,17 +84,22 @@ main {
   margin-top: 2rem;
 }
 
-.language-selector {
+.language-button {
   position: relative;
-  width: 6.813rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
   align-self: flex-end;
-  /* margin-right: 1rem; */
   margin-right: 7rem;
   margin-bottom: 1.25rem;
-  cursor: pointer;
-  transition: none;
-  pointer-events: auto !important;
   z-index: 2;
+}
+
+.language-selector {
+  width: 6.813rem;
+  /* margin-right: 1rem; */
+  transition: none;
 }
 
 .vinyl-section {
